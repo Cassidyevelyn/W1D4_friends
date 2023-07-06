@@ -118,6 +118,12 @@ print(person2["friends"])
 # INPUT: person2, "Fred"
 # OUTPUT: None
 # Test your function by calling it and then printing our person2's list of friends
+def remove_friend(person, old_friend):
+    for friend in person["friends"]:
+        if friend == old_friend:
+            del friend 
+remove_friend(person2, "Fred")
+print(person2)
 
 
 # 6. Define a function called total_money(people) that returns the total of everyone's money
