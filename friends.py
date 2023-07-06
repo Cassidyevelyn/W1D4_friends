@@ -102,11 +102,16 @@ print(likes_to_eat(person3, "spinach"))
     
 
 
-
 # 4. Define a function called add_friend(person, new_friend) that appends a new friend to the person's list of friends
 # INPUT: person2, "Scrappy-Doo"
 # OUTPUT: None
 # Test your function by calling it and then printing our person2's list of friends
+
+def add_friend(person, new_friend):
+    person["friends"].append(new_friend)
+    return
+add_friend(person2, "Scrappy-Doo")
+print(person2["friends"])
 
 
 # 5. Define a function called remove_friend(person, old_friend) that removes a friend from the person's list of friends
