@@ -75,10 +75,11 @@ print(get_name(person5))
 # 2. Define a function called get_favourite_tv_show(person) that returns the given person's favourite TV show
 # INPUT: person2
 # OUTPUT: "Baywatch"
-def get_favourite_tv_show(person):
+def get_favourite_tv_show(person): 
     return person["favourites"]["tv_show"]
 
 print(get_favourite_tv_show(person2))
+
 
 
 # 3. Define a function called likes_to_eat(person, food) that returns True or False
@@ -109,7 +110,7 @@ print(likes_to_eat(person3, "spinach"))
 
 def add_friend(person, new_friend):
     person["friends"].append(new_friend)
-    return
+    
 add_friend(person2, "Scrappy-Doo")
 print(person2["friends"])
 
@@ -119,37 +120,72 @@ print(person2["friends"])
 # OUTPUT: None
 # Test your function by calling it and then printing our person2's list of friends
 def remove_friend(person, old_friend):
-    for friend in person["friends"]:
-        if friend == old_friend:
-            del friend 
+    person["friends"].remove(old_friend)
+
 remove_friend(person2, "Fred")
-print(person2)
+print(person2["friends"])
 
 
 # 6. Define a function called total_money(people) that returns the total of everyone's money
 # INPUT: people
 # OUTPUT: 143
 
+def total_money(people):
+    total = 0
+    for person in people:
+        total += person["monies"]
+    return total
+people = [person1,person2,person3,person4,person5]
+print(total_money(people))
+    
+
+
 
 # 7. Define a function called lend_money(lender, borrower, amount) that removes a given amount from the lender and adds it to the borrower
 # INPUT: person2, person1, 2
 # OUTPUT: None
 # Test your function by calling it and then printing out person1's and person2's monies
-
+def lend_money(lender, borrower, amount):
+    lender["monies"] -= amount
+    borrower["monies"] += amount
+lend_money(person2, person1, 2)
+print(person1["monies"])
+print(person2["monies"])
 
 # 8. Define a function called all_favourite_foods(people) that returns a list of everyone's favourite food.
 # INPUT: people
 # OUTPUT: ["charcuterie", "soup", "bread", "Scooby snacks", "spaghetti", "ratatouille", "spinach"]
-
+def all_favourite_foods(people):
+    favourite_foods = []
+    for person in people:
+        snacks = person["favourites"]["snacks"]
+        favourite_foods.extend(snacks)
+    return favourite_foods
+print(all_favourite_foods(people))
 
 # 9. Define a function called find_no_friends(people) that returns a list of all the people that have a friends list of length 0.
 # INPUT: people
 # OUTPUT: [{'name': 'Daphne', 'age': 20, 'monies': 100, 'friends': [], 'favourites': {'tv_show': 'X-Files', 'snacks': ['spinach']}}]
-
+def find_no_friends(people):
+    no_friends = []
+    for person in people:
+        if len(person["friends"]) == 0:
+            no_friends.append(person)
+    return no_friends
+no_friends_list = find_no_friends(people)
+print(no_friends_list)
 
 # 10. Define a function called unique_favourite_tv_shows(people) that returns a list of all the tv_shows (without duplicates).
 # INPUT: people
 # OUTPUT: ['Friends', 'Baywatch', 'Pokemon', 'X-Files']
+def unique_favourite_tv_shows(people):
+    unique_shows = set()
+    for person in people:
+        unique_shows.add(person["favourites"]["tv_show"])
+    return list(unique_shows)
+
+unique_shows_list = unique_favourite_tv_shows(people)
+print(unique_shows_list)
 
 
 # BONUS: Try to refactor the previous function to use Python's built-in set() function.
